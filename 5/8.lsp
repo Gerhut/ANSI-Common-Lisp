@@ -1,0 +1,10 @@
+(defun maxmin (lst)
+  (if (= 1 (length lst))
+    (return-from maxmin (values (car lst) (car lst))))
+  (multiple-value-bind (mx mn) (maxmin (cdr lst))
+    (let ((cur (car lst)))
+      (if (< mx cur) (setf mx cur))
+      (if (> mn cur) (setf mn cur))
+      (values mx mn))))
+
+(princ (multiple-value-list (maxmin '(1 4 2 6 2 6 4 7 3 8 2 9))))
