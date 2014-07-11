@@ -1,0 +1,16 @@
+(defun al2ht (al)
+  (let ((ht (make-hash-table)))
+    (dolist (kv al)
+      (setf (gethash (car kv) ht) (cdr kv)))
+    ht))
+
+(defun ht2al (ht)
+  (let ((al nil))
+    (maphash (lambda (k v)
+               (push (cons k v) al))
+             ht)
+    al))
+
+(setf al '((a . 1) (b . 2) (c . 3)))
+(princ (al2ht al))
+(princ (ht2al (al2ht al)))

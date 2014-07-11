@@ -1,0 +1,16 @@
+(defun copy-list (lst)
+  (reduce (lambda (a b)
+            (if (consp a)
+              (append a (list b))
+              (list a b)))
+          lst))
+
+(defun reverse (lst)
+  (reduce (lambda (a b)
+            (if (consp a)
+              (cons b a)
+              (list b a)))
+          lst))
+
+(princ (copy-list '(1 2 3 4 5 6)))
+(princ (reverse '(1 2 3 4 5 6)))
